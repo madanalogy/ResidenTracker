@@ -30,5 +30,8 @@ export class ResidentDetailComponent implements OnInit {
   goBack(): void {
     this.location.back();
   }
-
+  save(): void {
+    this.residentService.updateResident(this.resident)
+      .subscribe(() => this.goBack());
+  }
 }
