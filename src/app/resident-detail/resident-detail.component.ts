@@ -20,6 +20,7 @@ export class ResidentDetailComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.getResident();
   }
   getResident(): void {
     const room = +this.route.snapshot.paramMap.get('room');
