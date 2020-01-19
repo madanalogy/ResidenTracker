@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Resident} from '../resident';
-import {RESIDENTS} from '../demo-residents';
+import { ResidentService} from '../resident.service';
 
 @Component({
   selector: 'app-residents',
@@ -9,19 +9,15 @@ import {RESIDENTS} from '../demo-residents';
 })
 export class ResidentsComponent implements OnInit {
 
-  constructor() { }
-  residents = RESIDENTS;
-  resident: Resident = {
-    room: 1,
-    name: 'Ahmed',
-    phone: '92279419'
-  };
-  selectedResident: Resident;
+  constructor(private residentService: ResidentService) { }
+  residents: Resident[];
 
   ngOnInit() {
+    this.getResidents();
   }
-  onSelect(resident: Resident): void {
-    this.selectedResident = resident;
+  getResidents(): void {
+    this.residentService.getResidents()
+      .subscribe(residents => this.residents = residents);
   }
 
 }

@@ -1,5 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 import { Resident} from '../resident';
+import {ResidentService} from '../resident.service';
 
 @Component({
   selector: 'app-resident-detail',
@@ -10,9 +13,21 @@ import { Resident} from '../resident';
 export class ResidentDetailComponent implements OnInit {
   @Input() resident: Resident;
 
-  constructor() { }
+  constructor(
+    private route: ActivatedRoute,
+    private residentService: ResidentService,
+    private location: Location
+  ) { }
 
   ngOnInit() {
+  }
+  getResident(): void {
+    const room = +this.route.snapshot.paramMap.get('room');
+    this.residentService.getResident(room)
+      .subscribe(resident => this.resident = resident);
+  }
+  goBack(): void {
+    this.location.back();
   }
 
 }
