@@ -1,0 +1,10 @@
+<h2>My Residents</h2>
+<ul class="residents">
+  <li *ngFor="let resident of residents"
+      (click)="onSelect(resident)"
+      [class.selected]="resident === selectedResident">
+    <span class="badge">{{resident.room}}</span> {{resident.name}}
+  </li>
+</ul>
+
+<app-resident-detail [resident]="selectedResident"></app-resident-detail>

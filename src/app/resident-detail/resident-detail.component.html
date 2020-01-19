@@ -1,0 +1,16 @@
+<div *ngIf="resident">
+
+  <h2>{{resident.name | uppercase}} Details</h2>
+  <div><span>room: </span>{{resident.room}}</div>
+  <div>
+    <label>name:
+      <input [(ngModel)]="resident.name" placeholder="name"/>
+    </label>
+  </div>
+  <div>
+    <label>phone:
+      <input [(ngModel)]="resident.phone" placeholder="phone"/>
+    </label>
+  </div>
+
+</div>
